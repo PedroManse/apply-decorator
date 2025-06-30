@@ -1,0 +1,7 @@
+{
+  "name": "apply-decorator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "GPL-3.0",
+  "description": "Testing how to apply a decorator multiple times"
+}
