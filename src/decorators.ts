@@ -1,7 +1,7 @@
 type DecoratorReplaceInstance<
 	I extends unknown[], O,
 	I2 extends unknown[], O2,
-> = Fn<[Fn<I, O>], [Fn<I2, O2>]>
+> = Fn<[Fn<I, O>], Fn<I2, O2>>
 type DecoratorModifyInstance<I extends unknown[], O> = Fn<[Fn<I, O>], void>;
 
 /*
@@ -54,7 +54,7 @@ export function applySeveralReplace<
 >(entries: D[], decorator: CloneDecorator<I, O, I, O, D>) {
 	return function(fn: Fn<I, O>) {
 		for (const entry of entries.reverse()) {
-			[fn] = decorator(...entry)(fn);
+			fn = decorator(...entry)(fn);
 		}
 		return fn;
 	}
