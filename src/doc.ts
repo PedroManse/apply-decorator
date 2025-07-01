@@ -19,4 +19,12 @@ export function docs(vs: {key: string, value: string}[]) {
 	}
 }
 
+export function isDocFunction<I extends unknown[], O>(fn: Fn<I, O>): fn is DocFn<I, O> {
+	return ("doc" in fn) && typeof fn["doc"] == "object";
+}
 
+export function getDocs<I extends unknown[], O>(fn: Fn<I, O>): Record<string, string> | undefined {
+	if (isDocFunction(fn)) {
+		return fn.doc
+	}
+}
